@@ -1,915 +1,482 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>游戏资源分享</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不玩黄油 · 游戏教程</title>
     <style>
-        body {
-            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
+        :root {
+            --bg-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --card-bg: #ffffff;
+            --text-main: #2c3e50;
+            --text-sub: #666;
+            --accent-blue: #3498db;
+            --accent-orange: #ff9f43;
+            --accent-red: #e74c3c;
+            --accent-green: #2ecc71;
+            --highlight-bg: #fff9e6;
+            --code-bg: #2c2c2c;
         }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft YaHei", sans-serif;
+            background: var(--bg-gradient);
+            margin: 0;
+            padding: 20px 10px;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
         }
-        
-        /* 主标题样式 */
-        .main-header {
+
+        .header {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 30px 20px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255,255,255,.96);
+            border-radius: 18px;
+            padding: 32px 20px;
+            margin-bottom: 22px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.2);
         }
-        .main-title {
-            font-size: 3.5em;
+
+        .header h1 {
+            font-size: 2.8em;
             font-weight: 900;
-            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            background: linear-gradient(45deg,#ff6b6b,#feca57,#48dbfb,#ff9ff3);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            font-size: 1.2em;
-            color: #666;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-        
-        /* 链接区域样式 */
-        .links-section {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-        .links-section h2 {
-            text-align: center;
-            color: #2c3e50;
-            font-size: 1.8em;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #3498db;
-        }
-        .resource-link {
-            margin-bottom: 20px;
-        }
-        .resource-link a {
-            display: block;
-            padding: 20px 25px;
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            font-size: 1.6em;
-            font-weight: 800;
-            text-align: center;
-            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
-            border: 3px solid white;
-        }
-        
-        /* 社群卡片部分样式 */
-        .social-section {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .social-section h2 {
-            text-align: center;
-            color: #2c3e50;
-            font-size: 1.8em;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #e74c3c;
-        }
-        
-        /* 纸飞机链接样式 */
-        .telegram-link-box {
-            margin-bottom: 20px;
-        }
-        .telegram-link-box a {
-            display: block;
-            padding: 20px 25px;
-            background: linear-gradient(135deg, #0088cc, #006699);
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            font-size: 1.6em;
-            font-weight: 800;
-            text-align: center;
-            box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4);
-            border: 3px solid white;
-        }
-        .link-note {
-            font-size: 1em;
-            color: #7f8c8d;
-            margin-top: 8px;
-            text-align: center;
-        }
-        
-        /* 哔哩哔哩卡片样式 - 字体大小修正 */
-        .bilibili-card {
-            background: linear-gradient(135deg, #fb7299, #f56c6c);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 20px;
-            box-shadow: 0 6px 20px rgba(251, 114, 153, 0.4);
-            border: 3px solid white;
-        }
-        .bilibili-card a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.6em;
-            font-weight: 800;
-        }
-        .bilibili-title {
-            font-size: 1.6em;
-            font-weight: 800;
-            margin-bottom: 15px;
-        }
-        .bilibili-uid {
-            font-size: 1.6em;
-            font-weight: 800;
-            font-family: 'Courier New', monospace;
-            margin: 15px 0;
-        }
-        .bilibili-note {
-            font-size: 1em;
-            opacity: 0.9;
-        }
-        
-        /* QQ频道卡片样式 - 字体大小修正 */
-        .qq-channel-card {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 20px;
-            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
-            border: 3px solid white;
-        }
-        .qq-channel-card a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.6em;
-            font-weight: 800;
-        }
-        .qq-channel-title {
-            font-size: 1.6em;
-            font-weight: 800;
-            margin-bottom: 15px;
-        }
-        .qq-channel-id {
-            font-size: 1.6em;
-            font-weight: 800;
-            font-family: 'Courier New', monospace;
-        }
-        
-        /* QQ群部分样式 - 字体大小修正 */
-        .qq-section h3 {
-            text-align: center;
-            color: #2c3e50;
-            font-size: 1.6em;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-        .qq-groups-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-        .qq-group-card {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
-            border: 3px solid white;
-        }
-        .qq-group-number {
-            font-size: 1.6em;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-        .qq-group-id {
-            font-size: 1.6em;
-            font-weight: 800;
-            font-family: 'Courier New', monospace;
-        }
-        
-        /* 提示文本样式 */
-        .hint-box {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            text-align: center;
-            font-size: 1em;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- 主标题区域 -->
-        <header class="main-header">
-            <h1 class="main-title">不玩黄油</h1>
-            <p class="subtitle">精品游戏资源 · 专注汉化去码</p>
-        </header>
-        
-        <!-- 快速获取资源部分 -->
-        <section class="links-section">
-            <h2>🎮 快速获取资源，提取码：bwhy</h2>
-            <div class="resource-link">
-                <a href="https://a.7u9.cn/s/Ok2PIJyX">✨ 点击跳转，迅雷云盘</a>
-            </div>
-            <div class="resource-link">
-                <a href="https://v.v8l.cn/s/MNAVWSv">🚀 点击跳转，U C云盘</a>
-            </div>
-            <div class="resource-link">
-                <a href="https://a.7u9.cn/s/OPSYa4aj">🔥 点击跳转，百度云盘</a>
-            </div>
-        </section>
-        
-        <!-- 加入社群 | 关注账号部分 -->
-        <section class="social-section">
-            <h2>📱 加入社群 | 关注账号</h2>
-            
-            <!-- 纸飞机[中转群] -->
-            <div class="telegram-link-box">
-                <a href="https://b23.tv/qcRV8J0">关注哔哩哔哩账号</a>
-                <p class="link-note">ps：暂时被封了一年，2027年2月份解封</p>
-            </div>
-            
-            <!-- 哔哩哔哩账号 -->
-            <div class="bilibili-card">
-                <a href="https://t.me/mkszy123456">
-                    <div class="bilibili-title">🛩纸飞机telegram</div>
-                    <p class="bilibili-note">[中转群]只有这里才有游戏详情图</p>
-                    <p class="link-note">注意：需要开启VPN才能进入</p>
-                </a>
-            </div>
-            
-            <!-- QQ频道 -->
-            <div class="qq-channel-card">
-                <a href="https://pd.qq.com/s/bgbxt1o5s?b=9">
-                    <div class="qq-channel-title">点击跳转，🐧🐧频道</div>
-                </a>
-            </div>
-            
-            <!-- QQ群部分 -->
-            <div class="qq-section">
-                <h3>🐧🐧群（群密码：我爱祖国）</h3>
-                <div class="qq-groups-container">
-                    <div class="qq-group-card">
-                        <div class="qq-group-number">🐧🐧 群 ①</div>
-                        <div class="qq-group-id">631328597</div>
-                    </div>
-                    
-                    <div class="qq-group-card">
-                        <div class="qq-group-number">🐧🐧群 ②</div>
-                        <div class="qq-group-id">932246053</div>
-                    </div>
-                    
-                    <div class="qq-group-card">
-                        <div class="qq-group-number">🐧🐧群 ③</div>
-                        <div class="qq-group-id">705945900</div>
-                    </div>
-                    
-                    <div class="qq-group-card">
-                        <div class="qq-group-number">🐧🐧群 ④</div>
-                        <div class="qq-group-id">576824899</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 提示文本 -->
-            <div class="hint-box">
-                <p>💡 提示：加入社群可第一时间获取最新资源与更新通知</p>
-            </div>
-        </section>
-    </div>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>游戏资源教程</title>
-    <style>
-        * {
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            letter-spacing: 2px;
         }
-        body {
-            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            color: #333;
+
+        .header p {
+            color: #777;
+            margin-top: 10px;
+            font-size: 1.08em;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 22px rgba(0,0,0,.12);
         }
-        
-        /* 教程区块样式 */
-        .tutorial-section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .section-header {
-            font-size: 1.8em;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #ff9900;
-            position: relative;
-            color: #e67e22;
-        }
-        .section-header:after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, #ff9900, #ff6600);
-        }
-        
-        /* 子区块样式 */
-        .sub-section {
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 4px solid #3498db;
-        }
-        .sub-title {
-            font-size: 1.4em;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 15px;
+
+        .card h2 {
+            font-size: 1.35em;
+            color: var(--text-main);
+            border-bottom: 3px solid var(--accent-blue);
+            padding-bottom: 10px;
+            margin: 0 0 18px 0;
             display: flex;
             align-items: center;
+            gap: 10px;
         }
-        .sub-title:before {
-            content: '';
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            background: #3498db;
-            border-radius: 50%;
-            margin-right: 10px;
+
+        .btn {
+            display: block;
+            padding: 16px;
+            text-align: center;
+            border-radius: 10px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.15em;
+            margin-bottom: 12px;
+            text-decoration: none;
+            transition: .3s;
         }
-        
-        /* 密码区块样式 */
-        .password-block {
-            background: #2c3e50;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 1.1em;
-            position: relative;
+
+        .btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
+        .btn-blue { background: linear-gradient(135deg,#3498db,#2980b9); }
+        .btn-orange { background: linear-gradient(135deg,#ff9f43,#ff6b18); }
+        .btn-red { background: linear-gradient(135deg,#e74c3c,#c0392b); }
+
+        .tip {
+            font-size: .88em;
+            color: #888;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .toggle-btn {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 1.08em;
+            font-weight: 600;
+            color: var(--accent-blue);
+            cursor: pointer;
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            outline: none;
+        }
+
+        .toggle-btn::before {
+            content: "▼";
+            font-size: .75em;
+            transition: transform .3s;
+        }
+
+        .toggle-btn.open::before {
+            transform: rotate(180deg);
+        }
+
+        .toggle-content {
+            max-height: 0;
             overflow: hidden;
+            transition: max-height .4s ease-out;
+            padding-left: 5px;
         }
-        .password-block:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(to bottom, #3498db, #2ecc71);
+
+        .toggle-content.show {
+            max-height: 4000px;
         }
-        .password-note {
-            font-size: 0.9em;
-            color: #bdc3c7;
-            margin-top: 5px;
+
+        .toggle-content ul, .toggle-content ol {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        .toggle-content li {
+            margin-bottom: 8px;
+        }
+
+        .pwd-box {
+            background: var(--highlight-bg);
+            border-left: 4px solid #ffc107;
+            padding: 14px 16px;
+            margin: 12px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .pwd-box .main-pwd {
+            font-family: "Courier New", monospace;
+            font-size: 1.12em;
+            font-weight: bold;
+            word-break: break-all;
+            color: #2c3e50;
+        }
+
+        .pwd-note {
+            color: #666;
+            font-size: .82em;
+            margin-top: 6px;
             font-style: italic;
         }
-        
-        /* 列表样式 */
-        .step-list {
-            margin: 15px 0;
-            padding-left: 20px;
-        }
-        .step-list li {
-            margin-bottom: 10px;
-            position: relative;
-            list-style-type: none;
-        }
-        .step-list li:before {
-            content: '→';
-            color: #e74c3c;
-            position: absolute;
-            left: -20px;
-        }
-        
-        /* 链接样式 */
-        .video-link {
-            display: inline-block;
-            background: #e74c3c;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
+
+        .code-block {
+            background: var(--code-bg);
+            color: #f8f8f8;
+            padding: 12px 14px;
+            border-radius: 6px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: .92em;
+            word-break: break-all;
             margin: 10px 0;
-            transition: all 0.3s;
         }
-        .video-link:hover {
-            background: #c0392b;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
-        }
-        
-        /* 模拟器列表样式 */
-        .simulator-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        .simulator-item {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #9b59b6;
-            transition: all 0.3s;
-        }
-        .simulator-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3);
-        }
-        .simulator-name {
-            font-weight: 700;
-            color: #9b59b6;
-            margin-bottom: 5px;
-        }
-        .simulator-desc {
-            font-size: 0.9em;
-            color: #666;
-        }
-        
-        /* 代码块样式 */
-        .code-example {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.95em;
-            line-height: 1.5;
-            overflow-x: auto;
-        }
-        
-        /* 强调文本样式 */
-        .highlight {
-            color: #e74c3c;
-            font-weight: 700;
-        }
+
         .attention {
-            background: #fffacd;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-weight: 600;
+            color: var(--accent-red);
+            font-weight: bold;
+            margin: 6px 0;
         }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- 第一段内容：下载教程 -->
-        <section class="tutorial-section">
-            <h2 class="section-header">⚠️⚠️⚠️⚠️⚠️⚠️ 下载教程，下载教程，下载教程。</h2>
-            
-            <div class="sub-section">
-                <h3 class="sub-title">1️⃣1️⃣1️⃣1️⃣1️⃣1️⃣</h3>
-                <p><strong class="highlight">🔽游戏获取看这个🔽</strong></p>
-                <ul class="step-list">
-                    <li>1：保存我分享的游戏序号，找不到就翻翻最下面</li>
-                    <li>2：序号里面的内容全部下载</li>
-                    <li>3：解压分卷压缩包，需要密码（看下面）</li>
-                <!DOCTYPE html>
-<html>
-<head>
-    <style>
-        /* 专门针对视频教程按钮的样式修改 */
-        .video-tutorial-btn {
-            display: block;
-            width: 80%;
-            max-width: 300px;
-            margin: 20px auto;
-            padding: 20px 15px;
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: white;
-            text-decoration: none;
-            border-radius: 12px;
-            font-size: 1.4em;
-            font-weight: 700;
+
+        .ok {
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .video-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 16px;
+            margin: 18px 0;
             text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
-            border: 3px solid white;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
         }
-        
-        .video-tutorial-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(231, 76, 60, 0.6);
-        }
-        
-        .video-tutorial-btn:before {
-            content: '▶️';
-            font-size: 1.2em;
-            margin-right: 10px;
-        }
-        
-        .video-tutorial-btn:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+
+        .video-box video {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.3), 
-                transparent);
-            transition: 0.5s;
-            z-index: -1;
+            border-radius: 6px;
+            background: #000;
         }
-        
-        .video-tutorial-btn:hover:after {
-            left: 100%;
-        }
-        
-        /* 动画效果 */
-        @keyframes pulse {
-            0% { box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4); }
-            50% { box-shadow: 0 8px 30px rgba(231, 76, 60, 0.7); }
-            100% { box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4); }
-        }
-        
-        .video-tutorial-btn {
-            animation: pulse 2s infinite;
-        }
-        
-        /* 按钮容器样式 */
-        .video-section {
-            text-align: center;
-            margin: 25px 0;
-            padding: 15px;
-        }
-        
-        .video-title {
-            font-size: 1.2em;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-    </style>
-</head>
-<body>
 
-<!-- 在您的HTML文件中，找到视频教程按钮部分，替换为以下代码： -->
-<div class="video-section">
-    <div class="video-title">视频教程，点击查看详细教学</div>
-    <a href="https://b23.tv/hUkjza7" class="video-tutorial-btn">观看视频教程</a>
-</div>
-
-</body>
-</html>
-
-
-            <div class="sub-section">
-                <p><strong class="highlight">🔽解压密码看这个🔽</strong></p>
-                
-                <div class="password-block">
-                    ↓主密码↓<br>
-                    ytdhblkfcdhxla
-                    <p class="password-note">(一条大河波浪宽风吹稻花香两岸)</p>
-                </div>
-                
-                <div class="password-block">
-                    ↓副密码↓<br>
-                    zsmldzgswszddf
-                    <p class="password-note">(这是美丽的祖国是我生长的地方)</p>
-                </div>
-                
-                <div class="password-block">
-                    ↓磁力密码↓<br>
-                    fapforfun
-                </div>
-            </div>
-
-            <div class="sub-section">
-                <h3 class="sub-title">2️⃣2️⃣2️⃣2️⃣2️⃣2️⃣</h3>
-                <p><strong class="highlight">↓不会解压缩看这个↓</strong></p>
-                <ul class="step-list">
-                    <li>➡️电脑请安装（bandzip）解压软件，直接百度免费下载。当然我也分享了有，可以直接去下载</li>
-                    <li>➡️安卓请安装（ZArchiver Pro）解压软件，直接百度免费下载。当然我也分享了有，可以直接去下载</li>
-                </ul>
-            </div>
-
-            <div class="sub-section">
-                <h3 class="sub-title">3️⃣3️⃣3️⃣3️⃣3️⃣3️⃣</h3>
-                <p><strong class="highlight">↓我最早分享的老资源，你不会用就看这个↓</strong></p>
-                
-                <div class="sub-section">
-                    <h4 class="sub-title">1️⃣↓种子↓</h4>
-                    <p>.......torrent</p>
-                    <p>这个几十k的文件，叫种子</p>
-                    <p>打开方式就是，去迅雷、UC、百度云、夸克等等，或者只要能识别得到的软件、网站，都可以直接保存下载</p>
-                </div>
-                
-                <div class="sub-section">
-                    <h4 class="sub-title">2️⃣↓文档↓</h4>
-                    <p>txt文档里面去复制磁力，类似这种(magnet:?x t=urn:btih:30da667c62fc0dcee5abb6b2d6baa09728cb)</p>
-                    <p>然后去迅雷、UC、百度云、夸克等等，或者只要能识别磁力的软件，都可以直接保存下载</p>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- 第三段内容：游戏汉化去码 -->
-        <section class="tutorial-section">
-            <h2 class="section-header">⚠️⚠️⚠️⚠️⚠️⚠️ 游戏汉化去码，游戏汉化去码</h2>
-            
-            <div class="sub-section">
-                <h3 class="sub-title">1️⃣1️⃣1️⃣1️⃣1️⃣1️⃣</h3>
-                <p>如果<span class="highlight">'汉化、去码'</span>失败，注意游戏前置目录不要有中文</p>
-                <p>游戏目录示例：</p>
-                <div class="code-example">
-                    正确的游戏路径（电脑E盘/you  xi/666/404号室の性感マッサージ），这个游戏路径就是正确的
-                </div>
-                <div class="code-example">
-                    错误的游戏路径（电脑E盘/游戏/好玩的/404号室の性感マッサージ），这个你就得改成上面那种路径
-                </div>
-            </div>
-
-            <div class="sub-section">
-                <h3 class="sub-title">2️⃣2️⃣2️⃣2️⃣2️⃣2️⃣</h3>
-                <p>首先需要知道游戏引擎是什么？？？</p>
-                
-                <div class="sub-section">
-                    <h4 class="sub-title">1：unity引擎</h4>
-                    <ul class="step-list">
-                        <li>①游戏目录统一的（data）文件夹</li>
-                        <li>②进游戏时，有大大的unity的logo</li>
-                    </ul>
-                </div>
-                <div class="sub-section">
-                    <h4 class="sub-title">2：虚幻引擎</h4>
-                    <ul class="step-list">
-                        <li>①游戏目录统一的（Engine）文件夹</li>
-                        <li>②启动时通常显示 "Unreal Engine" 或 Epic Games 的Logo（如齿轮图标）</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="sub-section">
-                <h3 class="sub-title">3️⃣3️⃣3️⃣3️⃣3️⃣3️⃣</h3>
-                <p><strong class="highlight">正式去码教程</strong></p>
-                
-                <div class="sub-section">
-                    <h4 class="sub-title">1️⃣：unity游戏引擎去码</h4>
-                    <ul class="step-list">
-                        <li>①我已经把去码补丁放好了，你直接启动游戏就无码</li>
-                    </ul>
-                </div>
-                
-                <div class="sub-section">
-                    <h4 class="sub-title">2️⃣：虚幻游戏引擎去码（下面有视频教学）</h4>
-                    <p>我已经把去码补丁放好了，但是需要你自己稍微设置一下，学会了以后都可以快速使用！！！</p>
-                    <ul class="step-list">
-                        <li>①找到游戏主目录</li>
-                        <p class="attention">应该在：游戏名字/游戏名字/Binaries/Win64/游戏名字Win64-Shipping.exe，这里就是游戏主目录</p>
-                        <li>②右击（游戏名字.exe），创建快捷方式</li>
-                        <li>③再右击刚才创建的快捷方式，点击属性</li>
-                        <li>④看到（目标(T):）那一行</li>
-                        <div class="code-example">
-                            在末尾编辑内容： -dx11
-                        </div>
-                        <p class="attention">↑↑↑↑注意</p>
-                        <p class="attention">不是（-dx11）</p>
-                        <p class="attention">应该是（键盘空格-dx11）</p>
-                        <p class="attention">-前面有个空格</p>
-                        <li>⑤应用，然后启动这个快捷方式就无码了</li>
-                        <li>⑥无码游玩只能启动这个你刚创建的快捷方式，如果启动游戏的自带exe程序，还是会有码</li>
-                    </ul>
-                </div>
-                <!-- 在你的网页中添加这段代码 -->
-<div class="video-box">
-  <h3>📺 虚幻引擎游戏，去码教程（点击播放）</h3>
-  <video 
-    controls 
-    poster="https://cdn.jsdelivr.net/gh/你的GitHub账号/仓库名@main/封面图.jpg"
-    style="width:100%; border-radius:8px;"
-  >
-    <source src="https://cdn.jsdelivr.net/gh/kingbosswang/video/bwhy去码视频教程.mp4" type="video/mp4">
-    您的浏览器不支持视频播放
-  </video>
-  <p class="tip">如加载缓慢，<a href="https://cdn.jsdelivr.net/gh/kingbosswang/video/bwhy去码视频教程.mp4" download>点击下载视频</a></p>
-</div>
-            </div>
-        </section>
-    </div>
-</body>
-</html>
-
-
-
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        /* 微信支付二维码区域优化 */
-        .payment-section {
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-            border-radius: 12px;
-            padding: 18px;  /* 减少内边距 */
-            margin: 20px auto;
-            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.3);
-            color: white;
-            text-align: center;
-            max-width: 400px;  /* 限制最大宽度 */
-            border: 2px solid white;  /* 白色边框增加对比度 */
-        }
-        
-        .payment-title {
-            font-size: 1.5em;
-            font-weight: 800;
-            margin-bottom: 12px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-        }
-        
-        .payment-subtitle {
-            font-size: 0.95em;
-            opacity: 0.9;
-            margin-bottom: 15px;
-        }
-        
-        .qrcode-container {
-            display: inline-block;
-            background: white;
-            padding: 10px;  /* 减少内边距 */
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            margin: 10px auto;  /* 减少外边距 */
-            border: 2px solid rgba(255, 255, 255, 0.5);
-        }
-        
-        .qrcode-container img {
-            width: 160px;  /* 适当减小二维码尺寸 */
-            height: 160px;
-            display: block;
-            border-radius: 4px;
-        }
-        
-        .scan-text {
-            margin-top: 12px;
-            font-size: 1em;
-            font-weight: 600;
-        }
-    </style>
-</head>
-<body>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        /* 微信支付二维码区域优化 - 采用图片中的渐变风格 */
-        .payment-section {
-            background: linear-gradient(135deg, #ffffff 0%, #e8f5e9 50%, #c8e6c9 100%);
-            border-radius: 12px;
-            padding: 18px;
-            margin: 20px auto;
-            box-shadow: 0 6px 20px rgba(0, 150, 136, 0.2);
-            text-align: center;
-            max-width: 400px;
-            border: 2px solid #4caf50;  /* 改为绿色边框 */
-        }
-        
-        .payment-title {
-            font-size: 1.5em;
-            font-weight: 800;
-            margin-bottom: 12px;
-            color: #2e7d32;  /* 深绿色文字 */
-        }
-        
-        .payment-subtitle {
-            font-size: 0.95em;
+        .video-tip {
+            font-size: .88em;
             color: #666;
-            margin-bottom: 15px;
-            opacity: 0.8;
+            margin-top: 10px;
         }
-        
-        /* 新增推荐支付文本样式 */
-        .payment-recommend {
-            color: #ff9800;
-            font-weight: 600;
-            margin: 8px 0;
+
+        .video-tip a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        @media(max-width: 500px) { .grid { grid-template-columns: 1fr; } }
+
+        .grid-item {
+            background: linear-gradient(135deg,#3498db,#2980b9);
+            color: #fff;
+            padding: 16px 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-family: "Courier New", monospace;
             font-size: 1.1em;
+            box-shadow: 0 4px 12px rgba(52,152,219,.35);
         }
-        
-        /* 签名区域样式 */
-        .signature {
-            color: #333;
-            font-weight: 600;
-            margin: 8px 0;
-            font-size: 1.2em;
+
+        .grid-label {
+            font-size: .82em;
+            opacity: .9;
+            margin-bottom: 6px;
         }
-        
+
+        .payment-section {
+            background: linear-gradient(135deg,#ffffff 0%,#e8f5e9 50%,#c8e6c9 100%);
+            border-radius: 14px;
+            padding: 22px;
+            margin: 22px auto;
+            box-shadow: 0 6px 20px rgba(0,150,136,.2);
+            text-align: center;
+            border: 2px solid #4caf50;
+        }
+
+        .payment-title {
+            font-size: 1.5em;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #2e7d32;
+        }
+
+        .payment-subtitle {
+            font-size: .95em;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
         .qrcode-container {
             display: inline-block;
             background: white;
             padding: 12px;
             border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 10px rgba(0,0,0,.1);
             margin: 12px auto;
             border: 2px solid #4caf50;
+            cursor: pointer;
+            transition: transform .2s, box-shadow .2s;
+            text-decoration: none;
         }
-        
+
+        .qrcode-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0,0,0,.2);
+        }
+
         .qrcode-container img {
             width: 160px;
             height: 160px;
             display: block;
             border-radius: 6px;
         }
-        
+
         .scan-text {
             margin-top: 12px;
             font-size: 1em;
             font-weight: 600;
-            color: #2e7d32;  /* 绿色文字 */
+            color: #2e7d32;
         }
-        
-        /* 添加分隔线样式 */
+
         .divider {
             height: 2px;
-            background: linear-gradient(90deg, transparent, #4caf50, transparent);
-            margin: 15px auto;
+            background: linear-gradient(90deg,transparent,#4caf50,transparent);
+            margin: 18px auto;
             width: 80%;
         }
     </style>
 </head>
-<body>
 
-<!-- 优化后的微信支付二维码区域 - 模仿图片中的风格 -->
-<section class="payment-section">
-    <h3 class="payment-title">支持作者 | 微信支付</h3>
-    <p class="payment-subtitle">您的支持是我持续更新的最大动力！</p>
-    
-        
-    <div class="qrcode-container">
-        <img src="https://i.ibb.co/1tJDSxDY/IMG-20260205-151143.png" alt="微信支付二维码">
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>不玩黄油</h1>
+        <p>精品游戏资源 · 专注汉化去码</p>
     </div>
-    
-    
-    <div class="divider"></div>
-    
-    <p class="scan-text">点击图片，扫描二维码支持作者</p>
-</section>
+
+    <div class="card">
+        <h2>🎮 云盘资源</h2>
+        <a class="btn btn-blue" href="https://a.7u9.cn/s/Ok2PIJyX">✨ 迅雷云盘</a>
+        <a class="btn btn-orange" href="https://v.v8l.cn/s/MNAVWSv">🚀 UC云盘</a>
+        <a class="btn btn-red" href="https://a.7u9.cn/s/OPSYa4aj">🔥 百度云盘</a>
+        <p class="tip">全站统一解压密码见下方「解压密码」</p>
+    </div>
+
+    <div class="card">
+        <h2>📱 社群 & 关注</h2>
+
+        <button class="toggle-btn" onclick="toggle(this,'s1')">B站账号</button>
+        <div class="toggle-content" id="s1">
+            <a class="btn btn-red" href="https://b23.tv/qcRV8J0">哔哩哔哩主页</a>
+            <p class="tip">⚠️ 暂时封禁至 2027年2月，期间看TG群</p>
+        </div>
+
+        <button class="toggle-btn" onclick="toggle(this,'s2')">Telegram 中转群</button>
+        <div class="toggle-content" id="s2">
+            <a class="btn btn-blue" href="https://t.me/mkszy123456">🛩 点此进入 TG 群</a>
+            <p class="tip">需 VPN · 这里有完整游戏截图</p>
+        </div>
+
+        <button class="toggle-btn" onclick="toggle(this,'s3')">QQ 频道 & 群</button>
+        <div class="toggle-content" id="s3">
+            <a class="btn btn-blue" href="https://pd.qq.com/s/bgbxt1o5s?b=9">🐧 QQ 频道</a>
+            <p class="tip">群密码：<b>我爱祖国</b></p>
+            <div class="grid">
+                <div class="grid-item"><div class="grid-label">群①</div>631328597</div>
+                <div class="grid-item"><div class="grid-label">群②</div>932246053</div>
+                <div class="grid-item"><div class="grid-label">群③</div>705945900</div>
+                <div class="grid-item"><div class="grid-label">群④</div>576824899</div>
+                <div class="grid-item"><div class="grid-label">群⑤</div>182034266</div>
+                <div class="grid-item"><div class="grid-label">群⑥</div>980059512</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>📥 下载 & 解压教程</h2>
+
+        <button class="toggle-btn" onclick="toggle(this,'dl1')">① 怎么下载？</button>
+        <div class="toggle-content" id="dl1">
+            <ul>
+                <li>保存分享里的<strong>所有分卷</strong>，少一个都解不开</li>
+                <li>电脑用 <strong>Bandizip</strong>，安卓用 <strong>ZArchiver Pro</strong></li>
+                <li>老资源：<strong>.torrent</strong> 用迅雷/UC 打开；<strong>txt</strong> 里复制磁力链接</li>
+            </ul>
+        </div>
+
+        <button class="toggle-btn" onclick="toggle(this,'dl2')">② 解压密码</button>
+        <div class="toggle-content" id="dl2">
+            <div class="pwd-box">
+                <div class="main-pwd">ytdhblkfcdhxla</div>
+                <div class="pwd-note">(一条大河波浪宽风吹稻花香两岸)</div>
+            </div>
+            <div class="pwd-box">
+                <div class="main-pwd">zsmldzgswszddf</div>
+                <div class="pwd-note">(这是美丽的祖国是我生长的地方)</div>
+            </div>
+            <div class="pwd-box">
+                <div class="main-pwd">fapforfun</div>
+                <div class="pwd-note">(磁力密码)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>⚠️ 游戏汉化去码指南</h2>
+
+        <button class="toggle-btn" onclick="toggle(this,'hc1')">1️⃣ 前置条件：游戏路径不要有中文</button>
+        <div class="toggle-content" id="hc1">
+            <p>如果<strong>汉化、去码</strong>失败，注意游戏前置目录不要有中文。</p>
+            <div class="code-block">✅ 正确：E:/youxi/666/404号室の性感マッサージ</div>
+            <div class="code-block">❌ 错误：E:/游戏/好玩的/404号室の性感マッサージ</div>
+            <p class="attention">有中文的路径一定改成英文！</p>
+        </div>
+
+        <button class="toggle-btn" onclick="toggle(this,'hc2')">2️⃣ 确认游戏引擎类型</button>
+        <div class="toggle-content" id="hc2">
+            <p>首先需要知道游戏引擎是什么：</p>
+            <ul>
+                <li><strong>Unity 引擎</strong>：游戏目录有统一的 <code>Data</code> 文件夹，进游戏时有大大的 Unity Logo。</li>
+                <li><strong>虚幻引擎 (Unreal)</strong>：游戏目录有统一的 <code>Engine</code> 文件夹，启动时通常显示 Unreal Engine 或 Epic Games 的Logo。</li>
+            </ul>
+        </div>
+
+        <button class="toggle-btn" onclick="toggle(this,'hc3')">3️⃣ 正式去码教程（重点）</button>
+        <div class="toggle-content" id="hc3">
+            <p class="ok">→ Unity 引擎：我已经把去码补丁放好了，直接启动游戏就无码。</p>
+
+            <p class="attention" style="margin-top:15px;">→ 虚幻引擎：我已经把去码补丁放好了，但需要你自己稍微设置一下，学会了以后都可以快速使用！</p>
+
+            <div class="pwd-box" style="margin-top:16px;">
+                <p><strong>① 找到游戏主目录</p>
+                <p>应该在：<strong>游戏名字/游戏名字/Binaries/Win64/游戏名字Win64-Shipping.exe</strong></p>
+
+                <p><strong>② 右击（游戏名字.exe），创建快捷方式</strong></p>
+
+                <p><strong>③ 再右击刚才创建的快捷方式，点击「属性」</strong></p>
+
+                <p><strong>④ 看到「目标(T):」那一行</strong></p>
+                <div class="code-block">在末尾编辑内容： -dx11</div>
+
+                <p class="attention">↑↑↑↑ 注意</p>
+                <p class="attention">不是（-dx11）</p>
+                <p class="attention">应该是（键盘空格-dx11）</p>
+                <p class="attention">-前面有个空格！</p>
+
+                <p><strong>⑤ 点击「应用」，然后启动这个快捷方式就无码了</strong></p>
+
+                <p><strong>⑥ 以后无码游玩只能启动这个你刚创建的快捷方式</strong></p>
+                <p>如果启动游戏的自带exe程序，还是会有码。</p>
+            </div>
+
+            <div class="video-box">
+                <h3>📺 虚幻引擎游戏 · 去码教程</h3>
+                <video controls poster="https://i.ibb.co/1tJDSxDY/IMG-20260205-151143.png">
+                    <source src="https://cdn.jsdelivr.net/gh/kingbosswang/video/bwhy去码视频教程.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放
+                </video>
+                <p class="video-tip">如加载缓慢，<a href="https://cdn.jsdelivr.net/gh/kingbosswang/video/bwhy去码视频教程.mp4" download>点击下载视频</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="payment-section">
+        <h3 class="payment-title">☕ 支持作者 · 微信支付</h3>
+        <p class="payment-subtitle">您的支持是我持续更新的最大动力！</p>
+        <a class="qrcode-container" href="https://i.ibb.co/1tJDSxDY/IMG-20260205-151143.png" download="微信支付二维码.png" target="_blank">
+            <img src="https://i.ibb.co/1tJDSxDY/IMG-20260205-151143.png" alt="微信支付二维码">
+        </a>
+        <div class="divider"></div>
+        <p class="scan-text">点击图片，扫描二维码支持作者</p>
+    </div>
+
+</div>
+
+<script>
+    function toggle(btn, id){
+        const el = document.getElementById(id);
+        el.classList.toggle('show');
+        btn.classList.toggle('open');
+    }
+
+    window.onload = () => {
+        const contents = document.querySelectorAll('.toggle-content');
+        const btns = document.querySelectorAll('.toggle-btn');
+        contents.forEach(el => el.classList.remove('show'));
+        btns.forEach(el => el.classList.remove('open'));
+
+        const firstContent = document.querySelector('.toggle-content');
+        const firstBtn = document.querySelector('.toggle-btn');
+        if(firstContent && firstBtn){
+            firstContent.classList.add('show');
+            firstBtn.classList.add('open');
+        }
+    };
+</script>
 
 </body>
 </html>
-
