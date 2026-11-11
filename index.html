@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>不玩黄油 · 游戏教程</title>
+    <meta name="description" content="不玩黄油 · 精品游戏资源导航，全站汉化去码教程与完整游戏目录（5927 款）。">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="不玩黄油 · 游戏资源导航 & 汉化去码教程">
+    <meta property="og:description" content="全站资源清单 5927 款，可搜索游戏名 / 序号 / 版本；附汉化去码教程与云盘整理。">
+    <meta name="theme-color" content="#6a11cb">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🎮</text></svg>">
+    <title>不玩黄油 · 游戏资源导航 & 汉化去码教程</title>
     <style>
         :root {
             --bg-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
@@ -18,6 +24,8 @@
             --code-bg: #2c2c2c;
         }
 
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft YaHei", sans-serif;
             background: var(--bg-gradient);
@@ -25,6 +33,9 @@
             padding: 20px 10px;
             color: var(--text-main);
             line-height: 1.6;
+            min-height: 100vh;
+            min-height: 100dvh;
+            box-sizing: border-box;
         }
 
         .container {
@@ -58,12 +69,186 @@
             font-size: 1.08em;
         }
 
+        .header-stats {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 14px;
+            font-size: .82em;
+            color: #5d6d7e;
+        }
+
+        .header-stats span {
+            background: #f1f5fb;
+            border: 1px solid #e3ebf6;
+            border-radius: 20px;
+            padding: 4px 13px;
+            font-weight: 600;
+        }
+
+        .quick-nav {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: -6px 0 20px;
+        }
+
+        .quick-nav a,
+        .quick-nav button {
+            background: rgba(255,255,255,.93);
+            color: #2c3e50;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: none;
+            font-family: inherit;
+            font-size: .9em;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,.15);
+            transition: .2s;
+            cursor: pointer;
+        }
+
+        .quick-nav a:hover,
+        .quick-nav button:hover {
+            transform: translateY(-2px);
+            background: #fff;
+        }
+
+        .quick-nav button.active {
+            background: #2575fc;
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(37,117,252,.45);
+            transform: translateY(-2px);
+        }
+
+        .panel[hidden] { display: none; }
+
+        .letter-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+            margin: 12px 0 2px;
+            padding: 10px;
+            background: #f5f8ff;
+            border: 1px dashed #d5e0f5;
+            border-radius: 12px;
+        }
+
+        .letter-row[hidden] { display: none; }
+
+        .letter-row .label {
+            font-size: .8em;
+            color: #8b98a8;
+            font-weight: 700;
+            margin-right: 2px;
+        }
+
+        .letter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .letter-chip {
+            min-width: 32px;
+            padding: 5px 10px;
+            border: 2px solid #dde5f2;
+            border-radius: 8px;
+            background: #fff;
+            color: #4a5a6a;
+            font-family: inherit;
+            font-size: .82em;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .15s;
+            line-height: 1.2;
+        }
+
+        .letter-chip:hover { border-color: #a9c4f5; color: #2575fc; }
+
+        .letter-chip.active {
+            background: #2575fc;
+            border-color: #2575fc;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(37,117,252,.35);
+        }
+
+        .letter-chip .cnt {
+            font-size: .78em;
+            font-weight: 600;
+            opacity: .65;
+            margin-left: 2px;
+        }
+
+        .pager {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 20px 0 4px;
+        }
+
+        .pager[hidden] { display: none; }
+
+        .page-btn {
+            min-width: 36px;
+            height: 36px;
+            padding: 0 10px;
+            border: 2px solid #e1e8f4;
+            border-radius: 9px;
+            background: #fff;
+            color: #4a5a6a;
+            font-family: inherit;
+            font-size: .85em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .15s;
+        }
+
+        .page-btn:hover:not(:disabled) { border-color: #a9c4f5; color: #2575fc; }
+        .page-btn:disabled { opacity: .38; cursor: default; }
+
+        .page-btn.active {
+            background: #2575fc;
+            border-color: #2575fc;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(37,117,252,.35);
+        }
+
+        .page-dots {
+            color: #9aa7b4;
+            font-weight: 700;
+            padding: 0 2px;
+            user-select: none;
+        }
+
+        .page-info {
+            width: 100%;
+            text-align: center;
+            font-size: .78em;
+            color: #8b98a8;
+            margin-top: 4px;
+        }
+
+        @media (max-width: 520px) {
+            .quick-nav { gap: 6px; }
+            .quick-nav a, .quick-nav button { padding: 7px 11px; font-size: .82em; }
+            .letter-chip { min-width: 30px; padding: 5px 8px; }
+            .page-btn { min-width: 32px; height: 34px; font-size: .8em; }
+        }
+
         .card {
             background: var(--card-bg);
             border-radius: 14px;
             padding: 22px;
             margin-bottom: 20px;
             box-shadow: 0 8px 22px rgba(0,0,0,.12);
+            scroll-margin-top: 14px;
         }
 
         .card h2 {
@@ -254,6 +439,7 @@
             box-shadow: 0 6px 20px rgba(0,150,136,.2);
             text-align: center;
             border: 2px solid #4caf50;
+            scroll-margin-top: 14px;
         }
 
         .payment-title {
@@ -370,6 +556,425 @@
             color: #b35900;
             margin: 0;
         }
+
+        /* ===== 游戏目录 ===== */
+        .catalog-badge {
+            margin-left: auto;
+            font-size: .62em;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg,#6a11cb,#2575fc);
+            padding: 5px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+            box-shadow: 0 3px 10px rgba(37,117,252,.35);
+        }
+
+        .catalog-desc {
+            font-size: .88em;
+            color: #7f8c9b;
+            margin: -6px 0 14px;
+        }
+
+        .catalog-desc a {
+            color: #2575fc;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(37,117,252,.45);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #f5f7fb;
+            border: 2px solid #e5eaf3;
+            border-radius: 12px;
+            padding: 0 12px;
+            transition: .2s;
+        }
+
+        .search-box:focus-within {
+            background: #fff;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 4px rgba(52,152,219,.12);
+        }
+
+        .search-icon { font-size: .95em; opacity: .55; }
+
+        #gameSearch {
+            flex: 1;
+            min-width: 0;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 13px 8px;
+            font-size: 1em;
+            color: var(--text-main);
+            font-family: inherit;
+            -webkit-appearance: none;
+        }
+
+        #gameSearch::-webkit-search-cancel-button { -webkit-appearance: none; }
+
+        .search-clear {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border: none;
+            border-radius: 50%;
+            background: #dde3ee;
+            color: #5d6d7e;
+            font-size: .62em;
+            cursor: pointer;
+            flex: 0 0 auto;
+        }
+
+        .search-clear.show { display: flex; }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .chip {
+            border: none;
+            border-radius: 20px;
+            background: #eef1f8;
+            color: #56637a;
+            padding: 7px 14px;
+            font-size: .87em;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .chip:hover { background: #e2e8f4; }
+
+        .chip.active {
+            background: linear-gradient(135deg,#6a11cb,#2575fc);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(37,117,252,.3);
+        }
+
+        .chip .num {
+            opacity: .65;
+            font-size: .86em;
+            margin-left: 3px;
+        }
+
+        .chip.active .num { opacity: .9; }
+
+        .kind-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+            font-size: .82em;
+            color: #93a0b1;
+        }
+
+        .chip-mini {
+            border: none;
+            background: none;
+            color: #8494a8;
+            font-family: inherit;
+            font-size: 1em;
+            padding: 5px 9px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .chip-mini.active {
+            background: #e9f1ff;
+            color: #2575fc;
+            font-weight: 700;
+        }
+
+        .result-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px dashed #e6eaf2;
+            font-size: .82em;
+            color: #8b98a9;
+        }
+
+        .link-btn {
+            border: none;
+            background: none;
+            color: var(--accent-blue);
+            font-family: inherit;
+            font-size: 1em;
+            cursor: pointer;
+            padding: 0;
+            white-space: nowrap;
+        }
+
+        .game-list { margin-top: 4px; }
+
+        .game-item {
+            display: flex;
+            gap: 10px;
+            padding: 10px 8px;
+            border-radius: 10px;
+            border-bottom: 1px solid #f2f4f8;
+            cursor: pointer;
+            transition: background .15s;
+        }
+
+        .game-item:last-child { border-bottom: none; }
+        .game-item:hover { background: #f8fafd; }
+
+        .code-badge {
+            flex: 0 0 auto;
+            align-self: flex-start;
+            font-family: "Courier New", monospace;
+            font-size: .76em;
+            font-weight: 700;
+            letter-spacing: .3px;
+            color: #2575fc;
+            background: #eaf2ff;
+            border: 1px solid #d5e5ff;
+            border-radius: 6px;
+            padding: 2px 7px;
+            margin-top: 2px;
+            cursor: pointer;
+            transition: .15s;
+        }
+
+        .code-badge:hover { background: #2575fc; color: #fff; border-color: #2575fc; }
+
+        .game-body { flex: 1; min-width: 0; }
+
+        .game-name {
+            font-size: .94em;
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--text-main);
+            word-break: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .game-item.expanded .game-name { display: block; -webkit-line-clamp: unset; }
+
+        .game-note {
+            font-size: .79em;
+            color: #8b98a9;
+            line-height: 1.55;
+            margin-top: 2px;
+            word-break: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .game-item.expanded .game-note { display: block; -webkit-line-clamp: unset; }
+
+        mark {
+            background: #ffe787;
+            color: inherit;
+            border-radius: 2px;
+            padding: 0 1px;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #9aa7b8;
+            font-size: .92em;
+            padding: 30px 12px;
+            line-height: 1.9;
+        }
+
+        .empty-state .big { font-size: 2em; display: block; margin-bottom: 6px; }
+
+        .sentinel { height: 1px; }
+
+        .more-wrap {
+            display: flex;
+            justify-content: center;
+            margin-top: 16px;
+        }
+
+        .more-btn {
+            border: none;
+            border-radius: 24px;
+            background: #eef3ff;
+            color: #2575fc;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: .92em;
+            padding: 11px 28px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .more-btn:hover { background: #2575fc; color: #fff; }
+
+        .to-top {
+            position: fixed;
+            left: 18px;
+            bottom: 22px;
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(44,62,80,.85);
+            color: #fff;
+            font-size: 1.05em;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(0,0,0,.25);
+            opacity: 0;
+            pointer-events: none;
+            transition: .25s;
+            z-index: 50;
+        }
+
+        .to-top.show { opacity: 1; pointer-events: auto; }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 84px;
+            transform: translate(-50%, 16px);
+            background: rgba(44,62,80,.95);
+            color: #fff;
+            font-size: .88em;
+            padding: 10px 20px;
+            border-radius: 24px;
+            box-shadow: 0 8px 24px rgba(0,0,0,.25);
+            opacity: 0;
+            pointer-events: none;
+            transition: .25s;
+            z-index: 60;
+            max-width: 80vw;
+        }
+
+        .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+        /* ---------- 悬浮赞赏码 ---------- */
+        .pay-fab {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 55;
+            transition: opacity .25s ease, transform .25s ease;
+        }
+
+        .pay-fab.dim {
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+        }
+
+        .pay-fab-card {
+            position: relative;
+            width: 138px;
+            background: #fff;
+            border: 2px solid #2ecc71;
+            border-radius: 14px;
+            padding: 6px 6px 7px;
+            box-shadow: 0 10px 26px rgba(0,0,0,.28);
+            animation: fabIn .45s cubic-bezier(.2,.9,.3,1.2) both;
+        }
+
+        @keyframes fabIn {
+            from { opacity: 0; transform: translateY(14px) scale(.94); }
+            to { opacity: 1; transform: none; }
+        }
+
+        .pay-fab-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 9px;
+        }
+
+        .pay-fab-label {
+            display: block;
+            text-align: center;
+            margin-top: 5px;
+            font-size: .7em;
+            font-weight: 700;
+            letter-spacing: .5px;
+            color: #1fa85c;
+        }
+
+        .pay-fab-close {
+            position: absolute;
+            top: -9px;
+            right: -9px;
+            width: 24px;
+            height: 24px;
+            padding: 0;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            background: rgba(44,62,80,.9);
+            color: #fff;
+            font-size: 12px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,.25);
+            z-index: 2;
+        }
+
+        .pay-fab-tab {
+            display: none;
+            width: 54px;
+            height: 54px;
+            padding: 0;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(135deg,#2ecc71,#27ae60);
+            color: #fff;
+            font-size: .66em;
+            font-weight: 700;
+            line-height: 1.2;
+            cursor: pointer;
+            box-shadow: 0 8px 22px rgba(46,204,113,.45);
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .pay-fab.closed .pay-fab-card { display: none; }
+        .pay-fab.closed .pay-fab-tab { display: flex; }
+
+        .footer {
+            text-align: center;
+            color: rgba(255,255,255,.85);
+            font-size: .8em;
+            padding: 6px 0 26px;
+        }
+
+        @media (max-width: 520px) {
+            .header h1 { font-size: 2.2em; }
+            .card { padding: 18px 15px; }
+            .catalog-badge { font-size: .58em; padding: 4px 9px; }
+            .game-item { padding: 9px 4px; gap: 8px; }
+            .game-name { font-size: .9em; }
+            .code-badge { font-size: .72em; }
+            .pay-fab { right: 12px; bottom: 12px; }
+            .pay-fab-card { width: 104px; padding: 5px 5px 6px; }
+            .pay-fab-label { font-size: .64em; }
+            .pay-fab-tab { width: 48px; height: 48px; }
+            .to-top { left: 12px; bottom: 14px; width: 40px; height: 40px; }
+        }
     </style>
 </head>
 
@@ -379,7 +984,17 @@
     <div class="header">
         <h1>不玩黄油</h1>
         <p>精品游戏资源 · 专注汉化去码</p>
+        <div class="header-stats" id="headerStats"></div>
     </div>
+
+    <nav class="quick-nav" id="tabbar" role="tablist" aria-label="页面导航">
+        <button type="button" class="tab-btn active" data-tab="cloud" role="tab" aria-selected="true">☁️ 云盘资源</button>
+        <button type="button" class="tab-btn" data-tab="catalog" role="tab" aria-selected="false">📚 游戏目录</button>
+        <button type="button" class="tab-btn" data-tab="guide" role="tab" aria-selected="false">🛠 汉化教程</button>
+        <button type="button" class="tab-btn" data-tab="support" role="tab" aria-selected="false">☕ 支持作者</button>
+    </nav>
+
+    <section class="panel" id="panel-cloud" role="tabpanel">
 
     <div class="notice">
         <span class="notice-tag">📌 置顶公告</span>
@@ -388,7 +1003,7 @@
         </ul>
     </div>
 
-    <div class="card">
+    <div class="card" id="cloudCard">
         <h2>🎮 云盘资源</h2>
         <a class="btn btn-blue" href="https://v.v8l.cn/s/V3bxDCk">✨ 迅雷云盘</a>
         <a class="btn btn-orange" href="https://v.v8l.cn/s/MoFaXxa">🚀 UC云盘</a>
@@ -397,7 +1012,7 @@
     </div>
 
     <div class="card">
-        <h2>📱 社群 & 关注</h2>
+        <h2>📱 社群 &amp; 关注</h2>
 
         <button class="toggle-btn" onclick="toggle(this,'s1')">B站账号</button>
         <div class="toggle-content" id="s1">
@@ -411,7 +1026,7 @@
             <p class="tip">需 VPN · 这里有完整游戏截图</p>
         </div>
 
-        <button class="toggle-btn" onclick="toggle(this,'s3')">QQ 频道 & 群</button>
+        <button class="toggle-btn" onclick="toggle(this,'s3')">QQ 频道 &amp; 群</button>
         <div class="toggle-content" id="s3">
             <a class="btn btn-blue" href="https://pd.qq.com/s/bgbxt1o5s?b=9">🐧 QQ 频道</a>
             <p class="tip">群密码：<b>我爱祖国</b></p>
@@ -426,8 +1041,56 @@
         </div>
     </div>
 
-    <div class="card">
-        <h2>📥 下载 & 解压教程</h2>
+    </section>
+
+    <section class="panel" id="panel-catalog" role="tabpanel" hidden>
+
+    <div class="card" id="catalogCard">
+        <h2>📚 游戏目录 <span class="catalog-badge" id="catalogBadge">加载中…</span></h2>
+        <p class="catalog-desc">全站资源清单，可按 <b>游戏名 / 序号 / 版本</b> 搜索。<b>点击序号即可复制</b>，方便在云盘里搜索。数据更新于 <b id="catalogDate">2026-11-11</b>，<a href="bwhy-catalog.xlsx" download="不玩黄油游戏目录.xlsx">下载原始 Excel 表格</a>。</p>
+
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input id="gameSearch" type="search" placeholder="搜索游戏名、序号（如 5C184）、版本…" autocomplete="off" enterkeyhint="search" aria-label="搜索游戏">
+            <button class="search-clear" id="searchClear" type="button" aria-label="清空搜索">✕</button>
+        </div>
+
+        <div class="chip-row" id="catChips"></div>
+
+        <div class="letter-row" id="letterRow" hidden>
+            <span class="label">字母</span>
+            <div class="letter-chips" id="letterChips"></div>
+        </div>
+
+        <div class="kind-row">
+            <span>编号：</span>
+            <button class="chip-mini active" data-kind="all" type="button">全部</button>
+            <button class="chip-mini" data-kind="new" type="button">新资源（1A001 式）</button>
+            <button class="chip-mini" data-kind="old" type="button">老资源（纯数字）</button>
+        </div>
+
+        <div class="result-bar">
+            <span id="resultInfo">目录加载中…</span>
+            <button class="link-btn" id="resetBtn" type="button">重置筛选</button>
+        </div>
+
+        <div class="game-list" id="gameList"></div>
+
+        <div class="empty-state" id="emptyState" hidden>
+            <span class="big">🔍</span>
+            没有找到相关游戏<br>
+            换个关键词试试，或点击「重置筛选」
+        </div>
+
+        <div class="pager" id="pager" hidden></div>
+    </div>
+
+    </section>
+
+    <section class="panel" id="panel-guide" role="tabpanel" hidden>
+
+    <div class="card" id="guideCard">
+        <h2>📥 下载 &amp; 解压教程</h2>
 
         <button class="toggle-btn" onclick="toggle(this,'dl1')">① 怎么下载？</button>
         <div class="toggle-content" id="dl1">
@@ -505,7 +1168,7 @@
 
             <div class="video-box">
                 <h3>📺 虚幻引擎游戏 · 去码教程</h3>
-                <video controls poster="https://i.ibb.co/1tJDSxDY/IMG-20260205-151143.png">
+                <video controls>
                     <source src="https://cdn.jsdelivr.net/gh/kingbosswang/video/bwhy去码视频教程.mp4" type="video/mp4">
                     您的浏览器不支持视频播放
                 </video>
@@ -514,18 +1177,41 @@
         </div>
     </div>
 
-    <div class="payment-section">
+    </section>
+
+    <section class="panel" id="panel-support" role="tabpanel" hidden>
+
+    <div class="payment-section" id="supportCard">
         <h3 class="payment-title">☕ 支持作者 · 微信支付</h3>
         <p class="payment-subtitle">您的支持是我持续更新的最大动力！</p>
-        <a class="qrcode-container" href="https://i.ibb.co/1tJDSxDY/IMG-20260205-151143.png" download="微信支付二维码.png" target="_blank">
-            <img src="https://i.ibb.co/1tJDSxDY/IMG-20260205-151143.png" alt="微信支付二维码">
+        <a class="qrcode-container" href="wechat-pay.png" download="不玩黄油-微信赞赏码.png" target="_blank">
+            <img src="wechat-pay.png" alt="微信支付二维码" loading="lazy">
         </a>
         <div class="divider"></div>
-        <p class="scan-text">点击图片，扫描二维码支持作者</p>
+        <p class="scan-text">长按或扫码，请作者喝杯奶茶</p>
     </div>
+
+    </section>
+
+    <p class="footer">本站仅整理资源与教程 · 请支持正版</p>
 
 </div>
 
+<button class="to-top" id="toTop" type="button" aria-label="返回顶部">↑</button>
+<div class="toast" id="toast"></div>
+
+<div class="pay-fab" id="payFab">
+    <div class="pay-fab-card">
+        <button class="pay-fab-close" id="payClose" type="button" aria-label="收起赞赏码">✕</button>
+        <a href="wechat-pay.png" target="_blank" rel="noopener" title="点击查看大图">
+            <img src="wechat-pay.png" alt="微信赞赏二维码" width="714" height="818">
+        </a>
+        <span class="pay-fab-label">赞赏作者</span>
+    </div>
+    <button class="pay-fab-tab" id="payTab" type="button" aria-label="打开赞赏码">微信<br>赞赏</button>
+</div>
+
+<script src="games.js"></script>
 <script>
     function toggle(btn, id){
         const el = document.getElementById(id);
@@ -533,7 +1219,423 @@
         btn.classList.toggle('open');
     }
 
-    window.onload = () => {
+    /* ================= 返回顶部 ================= */
+    (function () {
+        const btn = document.getElementById('toTop');
+        if (!btn) return;
+        window.addEventListener('scroll', function () {
+            btn.classList.toggle('show', window.scrollY > 600);
+        }, { passive: true });
+        btn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    })();
+
+    /* ================= 悬浮赞赏码 ================= */
+    (function () {
+        const fab = document.getElementById('payFab');
+        if (!fab) return;
+        const closeBtn = document.getElementById('payClose');
+        const tab = document.getElementById('payTab');
+
+        function setClosed(closed) {
+            fab.classList.toggle('closed', closed);
+            try { localStorage.setItem('bwhy_pay_closed', closed ? '1' : '0'); } catch (e) {}
+        }
+
+        try {
+            if (localStorage.getItem('bwhy_pay_closed') === '1') fab.classList.add('closed');
+        } catch (e) {}
+
+        closeBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            setClosed(true);
+        });
+
+        tab.addEventListener('click', function () { setClosed(false); });
+
+        // 滚到赞赏区时自动淡出，避免与卡片里的二维码重复
+        const support = document.getElementById('supportCard');
+        function checkSupport() {
+            if (!support) return;
+            if (support.offsetParent === null) { fab.classList.remove('dim'); return; }
+            const r = support.getBoundingClientRect();
+            const vh = window.innerHeight || document.documentElement.clientHeight;
+            fab.classList.toggle('dim', r.top < vh * 0.88 && r.bottom > vh * 0.1);
+        }
+        window.addEventListener('scroll', checkSupport, { passive: true });
+        window.addEventListener('resize', checkSupport);
+        checkSupport();
+    })();
+
+    /* ================= 游戏目录 ================= */
+    (function () {
+        const data = window.GAME_DATA;
+        const listEl = document.getElementById('gameList');
+        if (!data || !Array.isArray(data.items)) {
+            document.getElementById('resultInfo').textContent = '目录数据加载失败，请刷新页面重试';
+            document.getElementById('catalogBadge').textContent = '加载失败';
+            return;
+        }
+
+        const PAGE = 50;
+
+        const CATS = [
+            { key: 'all', icon: '🗂', label: '全部' },
+            { key: '3D',  icon: '🧊', label: '电脑 3D' },
+            { key: 'SLG', icon: '🖱', label: '互动 SLG' },
+            { key: 'GAL', icon: '💬', label: 'galgame' },
+            { key: 'RPG', icon: '⚔', label: '电脑 RPG' },
+            { key: 'AND', icon: '📱', label: '安卓' }
+        ];
+        const CAT_OF = { '1': '3D', '2': 'SLG', '4': 'GAL', '5': 'RPG', '6': 'AND' };
+
+        /* 序号第二位的字母即分组：1A001 -> A；纯数字老资源没有字母 */
+        const items = data.items.map(function (row) {
+            var c = row[0] || '', n = row[1] || '', o = row[2] || '';
+            var m = /^\d([A-Za-z])/.exec(c);
+            return {
+                c: c, n: n, o: o,
+                cat: CAT_OF[c.charAt(0)] || 'AND',
+                old: /^\d+$/.test(c),
+                letter: m ? m[1].toUpperCase() : '',
+                key: (c + ' ' + n + ' ' + o).toLowerCase()
+            };
+        });
+
+        const counts = { all: items.length };
+        const letterCounts = {};
+        items.forEach(function (it) {
+            counts[it.cat] = (counts[it.cat] || 0) + 1;
+            if (!it.letter) return;
+            var map = letterCounts[it.cat] || (letterCounts[it.cat] = {});
+            map[it.letter] = (map[it.letter] || 0) + 1;
+        });
+
+        const state = { q: '', cat: 'all', kind: 'all', letter: 'all', page: 1 };
+        let filtered = items.slice();
+        let tokens = [];
+
+        const searchEl   = document.getElementById('gameSearch');
+        const clearEl    = document.getElementById('searchClear');
+        const catChips   = document.getElementById('catChips');
+        const letterRow  = document.getElementById('letterRow');
+        const letterChips = document.getElementById('letterChips');
+        const kindRow    = document.querySelector('.kind-row');
+        const resultInfo = document.getElementById('resultInfo');
+        const emptyEl    = document.getElementById('emptyState');
+        const pagerEl    = document.getElementById('pager');
+        const toastEl    = document.getElementById('toast');
+
+        /* ---- 头部统计 ---- */
+        document.getElementById('headerStats').innerHTML =
+            '<span>📚 收录 ' + items.length + ' 款</span>' +
+            '<span>🗓 更新 ' + (data.updated || '') + '</span>' +
+            '<span>✅ 持续整理中</span>';
+        document.getElementById('catalogBadge').textContent = items.length + ' 款';
+        if (data.updated) document.getElementById('catalogDate').textContent = data.updated;
+
+        /* ---- 分类按钮 ---- */
+        CATS.forEach(function (cat) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'chip' + (cat.key === state.cat ? ' active' : '');
+            b.dataset.cat = cat.key;
+            b.innerHTML = cat.icon + ' ' + cat.label +
+                ' <span class="num">' + (counts[cat.key] || 0) + '</span>';
+            catChips.appendChild(b);
+        });
+
+        /* ---- 工具函数 ---- */
+        function esc(s) {
+            return String(s).replace(/[&<>"]/g, function (m) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m];
+            });
+        }
+
+        function escRe(s) {
+            return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function hl(text, tks) {
+            text = String(text);
+            if (!tks.length) return esc(text).replace(/\n/g, '<br>');
+            var re = new RegExp('(' + tks.map(escRe).join('|') + ')', 'gi');
+            return text.split(re).map(function (part, i) {
+                return i % 2 ? '<mark>' + esc(part) + '</mark>' : esc(part);
+            }).join('').replace(/\n/g, '<br>');
+        }
+
+        function toast(msg) {
+            toastEl.textContent = msg;
+            toastEl.classList.add('show');
+            clearTimeout(toast._t);
+            toast._t = setTimeout(function () { toastEl.classList.remove('show'); }, 1600);
+        }
+
+        function copyText(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(function () {
+                    toast('已复制序号：' + text);
+                }).catch(function () { fallbackCopy(text); });
+            } else {
+                fallbackCopy(text);
+            }
+        }
+
+        function fallbackCopy(text) {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); toast('已复制序号：' + text); }
+            catch (e) { toast('复制失败，请手动选择'); }
+            document.body.removeChild(ta);
+        }
+
+        /* ---- 字母分组 ---- */
+        function buildLetters() {
+            if (state.cat === 'all' || state.kind === 'old') {
+                state.letter = 'all';
+                letterRow.hidden = true;
+                letterChips.innerHTML = '';
+                return;
+            }
+            var map = letterCounts[state.cat] || {};
+            var keys = Object.keys(map).sort();
+            if (!keys.length) {
+                state.letter = 'all';
+                letterRow.hidden = true;
+                letterChips.innerHTML = '';
+                return;
+            }
+            if (state.letter !== 'all' && keys.indexOf(state.letter) === -1) state.letter = 'all';
+
+            var html = '<button type="button" class="letter-chip' +
+                (state.letter === 'all' ? ' active' : '') + '" data-letter="all">全部</button>';
+            keys.forEach(function (k) {
+                html += '<button type="button" class="letter-chip' +
+                    (state.letter === k ? ' active' : '') + '" data-letter="' + k + '">' +
+                    k + '<span class="cnt">' + map[k] + '</span></button>';
+            });
+            letterChips.innerHTML = html;
+            letterRow.hidden = false;
+        }
+
+        /* ---- 渲染 ---- */
+        function itemHTML(it) {
+            var note = it.o ? '<div class="game-note">' + hl(it.o, tokens) + '</div>' : '';
+            return '<div class="game-item">' +
+                '<button class="code-badge" type="button" title="点击复制序号">' + esc(it.c) + '</button>' +
+                '<div class="game-body">' +
+                    '<div class="game-name">' + hl(it.n, tokens) + '</div>' + note +
+                '</div>' +
+            '</div>';
+        }
+
+        function totalPages() {
+            return Math.max(1, Math.ceil(filtered.length / PAGE));
+        }
+
+        function renderPager(total) {
+            if (filtered.length <= PAGE) {
+                pagerEl.hidden = true;
+                pagerEl.innerHTML = '';
+                return;
+            }
+            pagerEl.hidden = false;
+            var cur = state.page;
+            var set = {};
+            [1, total, cur - 2, cur - 1, cur, cur + 1, cur + 2].forEach(function (p) {
+                if (p >= 1 && p <= total) set[p] = 1;
+            });
+            var nums = Object.keys(set).map(Number).sort(function (a, b) { return a - b; });
+
+            var html = '<button type="button" class="page-btn" data-page="' + (cur - 1) + '"' +
+                (cur === 1 ? ' disabled' : '') + '>‹ 上一页</button>';
+            var prev = 0;
+            nums.forEach(function (p) {
+                if (prev && p - prev > 1) html += '<span class="page-dots">…</span>';
+                html += '<button type="button" class="page-btn' + (p === cur ? ' active' : '') +
+                    '" data-page="' + p + '">' + p + '</button>';
+                prev = p;
+            });
+            html += '<button type="button" class="page-btn" data-page="' + (cur + 1) + '"' +
+                (cur === total ? ' disabled' : '') + '>下一页 ›</button>';
+            html += '<div class="page-info">共 ' + total + ' 页 · 每页 ' + PAGE + ' 条</div>';
+            pagerEl.innerHTML = html;
+        }
+
+        function renderPage() {
+            var total = totalPages();
+            if (state.page > total) state.page = total;
+            if (state.page < 1) state.page = 1;
+
+            var start = (state.page - 1) * PAGE;
+            var end = Math.min(start + PAGE, filtered.length);
+            var html = '';
+            for (var i = start; i < end; i++) html += itemHTML(filtered[i]);
+            listEl.innerHTML = html;
+
+            emptyEl.hidden = filtered.length !== 0;
+            resultInfo.textContent = filtered.length === 0
+                ? '没有匹配结果'
+                : '共 ' + filtered.length + ' 款 · 第 ' + state.page + ' / ' + total + ' 页';
+            renderPager(total);
+        }
+
+        function apply() {
+            var q = state.q.trim().toLowerCase();
+            tokens = q ? q.split(/\s+/).filter(Boolean) : [];
+            filtered = items.filter(function (it) {
+                if (state.cat !== 'all' && it.cat !== state.cat) return false;
+                if (state.kind === 'old' && !it.old) return false;
+                if (state.kind === 'new' && it.old) return false;
+                if (state.letter !== 'all' && it.letter !== state.letter) return false;
+                for (var i = 0; i < tokens.length; i++) {
+                    if (it.key.indexOf(tokens[i]) === -1) return false;
+                }
+                return true;
+            });
+            buildLetters();
+            state.page = 1;
+            renderPage();
+        }
+
+        /* ---- 交互 ---- */
+        var timer = null;
+        searchEl.addEventListener('input', function () {
+            state.q = searchEl.value;
+            clearEl.classList.toggle('show', !!state.q);
+            clearTimeout(timer);
+            timer = setTimeout(apply, 110);
+        });
+
+        clearEl.addEventListener('click', function () {
+            searchEl.value = '';
+            state.q = '';
+            clearEl.classList.remove('show');
+            state.page = 1;
+            apply();
+            searchEl.focus();
+        });
+
+        catChips.addEventListener('click', function (e) {
+            var btn = e.target.closest('.chip');
+            if (!btn) return;
+            state.cat = btn.dataset.cat;
+            state.letter = 'all';
+            catChips.querySelectorAll('.chip').forEach(function (b) {
+                b.classList.toggle('active', b === btn);
+            });
+            apply();
+        });
+
+        letterChips.addEventListener('click', function (e) {
+            var btn = e.target.closest('.letter-chip');
+            if (!btn) return;
+            state.letter = btn.dataset.letter;
+            letterChips.querySelectorAll('.letter-chip').forEach(function (b) {
+                b.classList.toggle('active', b === btn);
+            });
+            state.page = 1;
+            apply();
+        });
+
+        kindRow.addEventListener('click', function (e) {
+            var btn = e.target.closest('.chip-mini');
+            if (!btn) return;
+            state.kind = btn.dataset.kind;
+            if (state.kind === 'old') state.letter = 'all';
+            kindRow.querySelectorAll('.chip-mini').forEach(function (b) {
+                b.classList.toggle('active', b === btn);
+            });
+            apply();
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', function () {
+            searchEl.value = '';
+            state.q = '';
+            state.cat = 'all';
+            state.kind = 'all';
+            state.letter = 'all';
+            state.page = 1;
+            clearEl.classList.remove('show');
+            catChips.querySelectorAll('.chip').forEach(function (b) {
+                b.classList.toggle('active', b.dataset.cat === 'all');
+            });
+            kindRow.querySelectorAll('.chip-mini').forEach(function (b) {
+                b.classList.toggle('active', b.dataset.kind === 'all');
+            });
+            apply();
+        });
+
+        pagerEl.addEventListener('click', function (e) {
+            var btn = e.target.closest('.page-btn');
+            if (!btn || btn.disabled) return;
+            var p = parseInt(btn.dataset.page, 10);
+            if (!p || p === state.page) return;
+            state.page = p;
+            renderPage();
+            var y = listEl.getBoundingClientRect().top + window.pageYOffset - 70;
+            window.scrollTo({ top: y > 0 ? y : 0, behavior: 'auto' });
+        });
+
+        listEl.addEventListener('click', function (e) {
+            var badge = e.target.closest('.code-badge');
+            if (badge) {
+                copyText(badge.textContent.trim());
+                return;
+            }
+            var item = e.target.closest('.game-item');
+            if (item) item.classList.toggle('expanded');
+        });
+
+        apply();
+    })();
+
+    /* ================= 标签页路由 ================= */
+    (function () {
+        const TABS = ['cloud', 'catalog', 'guide', 'support'];
+        const bar = document.getElementById('tabbar');
+
+        function current() {
+            var h = (location.hash || '').replace('#', '');
+            return TABS.indexOf(h) >= 0 ? h : 'cloud';
+        }
+
+        function show(name) {
+            TABS.forEach(function (t) {
+                const panel = document.getElementById('panel-' + t);
+                const btn = bar.querySelector('[data-tab="' + t + '"]');
+                const on = (t === name);
+                if (panel) panel.hidden = !on;
+                if (btn) {
+                    btn.classList.toggle('active', on);
+                    btn.setAttribute('aria-selected', on ? 'true' : 'false');
+                }
+            });
+            window.scrollTo(0, 0);
+            window.dispatchEvent(new Event('scroll'));
+        }
+
+        bar.addEventListener('click', function (e) {
+            const btn = e.target.closest('[data-tab]');
+            if (!btn) return;
+            const name = btn.dataset.tab;
+            if (history.pushState) history.pushState(null, '', '#' + name);
+            else location.hash = name;
+            show(name);
+        });
+
+        window.addEventListener('popstate', function () { show(current()); });
+        window.addEventListener('hashchange', function () { show(current()); });
+        show(current());
+    })();
+
+    window.onload = function () {
         const contents = document.querySelectorAll('.toggle-content');
         const btns = document.querySelectorAll('.toggle-btn');
         contents.forEach(el => el.classList.remove('show'));
@@ -550,4 +1652,3 @@
 
 </body>
 </html>
-
